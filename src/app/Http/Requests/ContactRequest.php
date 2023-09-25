@@ -24,24 +24,23 @@ class ContactRequest extends FormRequest
     public function rules()
     {
         return [
-            /*'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['string', 'max:255'],
+            'last_name' => ['string', 'max:255'],
             'gender' => ['required',],
             'email' => ['required', 'string', 'email', 'max:255'],
             'postcode' => ['required', 'string', 'regex:/^\d{3}-\d{4}$/'],
             'address' => ['required', 'string', 'max:255'],
             'building_name' => ['nullable', 'max:255'],
             'opinion' => ['required', 'string', 'max:255'],
-        */];
+        ];
     }
 
     public function messages()
     {
         return [
-            /*'first_name.required' => '名字を入力してください',
-            'first_name.string' => '名字は文字列で入力してください',
-            'last_name.required' => '名前を入力してください',
-            'last_name.string' => '名前は文字列で入力してください',
+
+            'first_name.string' => '名字を入力してください',
+            'last_name.string' => '名前を入力してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => '有効なメールアドレス形式を入力してください',
             'postcode.required' => '郵便番号を入力してください',
@@ -51,7 +50,7 @@ class ContactRequest extends FormRequest
             'opinion.required' => 'お問い合わせ内容を入力してください',
             'max' => [
                 'string' => ':attributeは:max文字以内でご入力ください',],
-          */
+
         ];
     }
 }

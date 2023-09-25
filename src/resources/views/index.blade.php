@@ -167,7 +167,7 @@
             submitButton.addEventListener('click', function(event) {
                 if (!validateForm()) {
                     event.preventDefault(); // フォーム送信をブロック
-                    alert('フォームにエラーがあります。修正してください。');
+                    alert('必須項目に空欄、もしくはエラーはあります。修正してください。');
                 }
             });
 
