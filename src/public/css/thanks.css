@@ -1,0 +1,31 @@
+.thanks {
+    max-width: 100%;
+    margin-top: 100px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.thanks__message{
+    padding: 50px;
+}
+
+.thanks__top--inner{
+    text-align: center;
+    padding: 10px;
+    width: 150px;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.thanks__rtn{
+    color: rgb(91, 91, 91);
+    font-size: 5px;
+    text-align: center;
+    margin: 25px auto;
+}

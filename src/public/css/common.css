@@ -1,0 +1,17 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header__logo {
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+}
