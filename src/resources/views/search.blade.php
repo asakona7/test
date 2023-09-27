@@ -17,7 +17,7 @@
             <div class="sys__form">
                 <p>
                 <div class="sys__from--input">お名前</div>
-                <input class="sys__input" type="text" name="fullname" value="{{ old('fullname', session('fullname')) }}">
+                <input class="sys__input" type="text" name="fullname" value="{{ old('fullname') }}">
                 </p>
 
                 <p class="radio__btn">
@@ -102,6 +102,11 @@
                         <form class="delete-form" action="/contacts/delete/{{ $result->id }}" method="POST">
                             @method('DELETE')
                             @csrf
+                            <input type="hidden" name="fullname" value="{{ old('fullname', session('fullname')) }}">
+                            <input type="hidden" name="gender" value="{{ old('gender', session('gender')) }}">
+                            <input type="hidden" name="created_at_start" value="{{ old('created_at_start', session('created_at_start')) }}">
+                            <input type="hidden" name="created_at_end" value="{{ old('created_at_end', session('created_at_end')) }}">
+                            <input type="hidden" name="email" value="{{ old('email', session('email')) }}">
                             <button class="rlt_btn-inner" type="submit">削除</button>
                         </form>
                     </td>

@@ -25,21 +25,26 @@
     font-weight: bold;
 }
 
-.confirm-table__header:last-of-type {
-    vertical-align: baseline;
+.confirm-table__row:last-child{
+    align-items: flex-start;;
 }
 
 .confirm-table__row{
     text-align: left;
+    margin-left: 60px;
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
 }
 
 .confirm-table__text {
-    padding: 10px;
+    padding: 20px;
     overflow-y: auto;
+    width: 70%;
 }
 
 .confirm-table__text input{
-    width: 50%;
+    width: 80%;
     white-space: nowrap;
     outline: none;
     border: none;
@@ -91,4 +96,28 @@ color: #000;
 .form__button-rtn-inner:hover{
     color: gray;
     text-decoration-color: gray;
+}
+
+@media screen and (max-width: 768px) { /* 例: 768px以下の画面幅の場合のスタイル */
+    .confirm-table__row {
+        flex-direction: column; /* 列方向に配置 */
+        align-items: flex-start; /* 左寄せ */
+        margin-left: 0; /* 左の余白を無効化 */
+    }
+
+    .confirm-table__text {
+        width: 100%; /* 幅を100%に設定 */
+        padding-top: 10px; /* 上部の余白を追加（任意の値） */
+    }
+    .confirm-table__header {
+        padding: 15px;
+        width: 50%;
+        font-weight: bold;
+    }
+    .confirm-table__text textarea {
+        width: 100%;
+        outline: none;
+        border: none;
+        font-size: 13px;
+    }
 }

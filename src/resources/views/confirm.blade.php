@@ -16,58 +16,56 @@
     <form class="form" action="/contacts" method="post">
         @csrf
         <div class="confirm-table">
-            <table class="confirm-table__inner">
-                <tr class="confirm-table__row">
-                    <th class="confirm-table__header">お名前</th>
-                    <td class="confirm-table__text">
+            <div class="confirm-table__inner">
+                <div class="confirm-table__row">
+                    <div class="confirm-table__header">お名前</div>
+                    <div class="confirm-table__text">
                         <input type="text" name="fullname" value="{{ $contact['fullname'] }}" readonly/>
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
-                <tr class="confirm-table__row">
-                    <th class="confirm-table__header">性別</th>
-                    <td class="confirm-table__text">
+                <div class="confirm-table__row">
+                    <div class="confirm-table__header">性別</div>
+                    <div class="confirm-table__text">
                         <input type="text" name="gender" value="{{ $contact['gender'] }}" readonly/>
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
-
-                <tr class="confirm-table__row">
-                    <th class="confirm-table__header">メールアドレス</th>
-                    <td class="confirm-table__text">
+                <div class="confirm-table__row">
+                    <div class="confirm-table__header">メールアドレス</div>
+                    <div class="confirm-table__text">
                         <input type="email" name="email" value="{{ $contact['email'] }}" readonly/>
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
-                <tr class="confirm-table__row">
-                    <th class="confirm-table__header">郵便番号</th>
-                    <td class="confirm-table__text">
+                <div class="confirm-table__row">
+                    <div class="confirm-table__header">郵便番号</div>
+                    <div class="confirm-table__text">
                         <input type="text" name="postcode" value="{{ $contact['postcode'] }}" readonly/>
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
-                <tr class="confirm-table__row">
-                    <th class="confirm-table__header">住所</th>
-                    <td class="confirm-table__text">
+                <div class="confirm-table__row">
+                    <div class="confirm-table__header">住所</div>
+                    <div class="confirm-table__text">
                         <input type="text" name="address" value="{{ $contact['address'] }}" readonly/>
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
-                <tr class="confirm-table__row">
-                    <th class="confirm-table__header">建物名</th>
-                    <td class="confirm-table__text">
+                <div class="confirm-table__row">
+                    <div class="confirm-table__header">建物名</div>
+                    <div class="confirm-table__text">
                         <input type="text" name="building_name" value="{{ $contact['building_name'] }}" readonly/>
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
-
-                <tr class="confirm-table__row">
-                    <th class="confirm-table__header">お問い合わせ内容</th>
-                    <td class="confirm-table__text">
+                <div class="confirm-table__row">
+                    <div class="confirm-table__header">お問い合わせ内容</div>
+                    <div class="confirm-table__text">
                         <textarea id="opinion" name="opinion" readonly>{{ $contact['opinion'] }}</textarea>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="form__button">
             <button class="form__button-submit" type="submit">送信</button>

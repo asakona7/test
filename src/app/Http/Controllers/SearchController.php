@@ -42,7 +42,6 @@ class SearchController extends Controller
 
         // ページネーションを適用
         $searchResults = $query->paginate(5);
-        $searchResults = $request->session()->get('searchResults');
 
         // 検索フォームの入力内容をセッションに保存
         $request->session()->put('fullname', $fullname);
@@ -51,14 +50,13 @@ class SearchController extends Controller
         $request->session()->put('created_at_end', $created_at_end);
         $request->session()->put('email', $email);
 
+        $searchResults = $request->session()->get('searchResults');
+
         return view('search')->with([
             'searchResults' => $searchResults, // セッションから取得した検索結果（ページネーションを含む）
             'request' => $request, // リクエストデータ（検索フォームの入力値など）
         ]);
     }
-
-
-
 
 
     public function index(Request $request)
@@ -112,8 +110,13 @@ class SearchController extends Controller
         $searchResults = Contact::query()->paginate(10); // ページネーションの件数を合わせる
         $request->session()->put('searchResults', $searchResults);
 
-        // 削除後にリダイレクト
-        return redirect()->route('contacts.search');
+        return redirect()->route('contacts.search')->with([
+            'fullname' => old('fullname', session('fullname')),
+            'gender' => old('gender', session('gender')),
+            'created_at_start' => old('created_at_start', session('created_at_start')),
+            'created_at_end' => old('created_at_end', session('created_at_end')),
+            'email' => old('email', session('email')),
+        ]);
     }
 
     public function boot()
@@ -121,5 +124,5 @@ class SearchController extends Controller
         Paginator::useBootstrap();
     }
 
-
 }
+

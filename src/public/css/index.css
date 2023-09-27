@@ -144,6 +144,15 @@ input,textarea{
     margin: 0 10px 0 5px;
 }
 
+.form__input--postcode input{
+    padding: 0 10px;
+    width: 600px;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    appearance: none;
+}
+
 .form__label--item{
     font-weight: 600;
 }
@@ -178,13 +187,104 @@ input,textarea{
     cursor: pointer;
 }
 
-.form__error {
-    margin-top: 5px;
-    padding-left: 10px;
-    width: 100%;
-    height: 90%;
-    background-color: deeppink;
-    color: white;
-    text-align: left;
-    border-radius: 5px;
+@media screen and (max-width: 768px) {
+    .form {
+        width: 90%; /* 画面幅が小さい場合はフォームを広げます */
+    }
+
+    .form__group:not(.radio__btn) {
+        flex-direction: column; /* 画面幅が小さい場合は要素を縦に配置します */
+    }
+
+    .form__group-opinion{
+        flex-direction: column;
+    }
+
+    .form__group-title,
+    .form__example {
+        text-align: left; /* タイトルと例文を左寄せにします */
+    }
+
+    .form__group-opinion .form__group-title {
+        align-self: flex-start; /* タイトルを左寄せにします */
+        margin-bottom: 10px; /* タイトルとフォームの間に余白を追加します */
+    }
+
+    .form__input--postcode {
+        display: block; /* 郵便暗号（郵便番号）のフィールドを表示します */
+    }
+
+    .form__input--text-name {
+        display: block; /* 縦に配置するためにブロック要素に変更 */
+        margin-right: 0; /* 右側のマージンを削除 */
+        margin-bottom: 10px;
+        max-width: none; /* 最大幅を解除 */
+    }
+
+    .form__input--text-name input {
+        width: 100%; /* 幅を100%に設定して親要素の幅いっぱいに広げる */
+        max-width: none; /* 最大幅を解除 */
+    }
+    .contact-form__content {
+        overflow-x: hidden; /* 水平スクロールバーを非表示にする */
+    }
+
+    .form__group {
+        white-space: normal; /* テキストを通常の折り返しに戻す */
+        margin-bottom: 10px; /* 必要に応じて余白を追加 */
+    }
+    .form__group-content:not(.radio__btn) {
+        justify-content: space-between; /* 幅を調整する必要がないため、要素を横に配置します */
+    }
+
+    .form__input--postcode input {
+
+    }
+
+    .form__postcode{
+        display: none;
+    }
+    .form__input--text input, .form__input--textarea textarea, .form__input--postcode input {
+        padding: 0 10px;
+        width: 300px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        appearance: none;
+
+        .form__example-1,
+        .form__example-2 {
+            position: static;
+        }
+
+    }
+
+    .form__group-content:not(.radio__btn) {
+        justify-content: space-between; /* 幅を調整する必要がないため、要素を横に配置します */
+    }
+
+    .form__input--postcode input {
+
+    }
+
+    .form__postcode{
+        display: none;
+    }
+    .form__input--text input,
+    .form__input--textarea textarea,
+    .form__input--postcode input {
+        padding: 0 10px;
+        width: 300px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        appearance: none;
+    }
+
+    .form__example-1 {
+        position: static; /* 位置指定を解除 */
+    }
+
+    .form__example-2 {
+        position: relative; /* 位置指定を解除 */
+        left: 125px; /* leftプロパティを解除 */
+    }
 }
