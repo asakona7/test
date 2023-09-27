@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Search;
+use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 
@@ -12,7 +14,6 @@ class TrainingTestController extends Controller
         return view('index');
     }
 
-
     public function confirm(ContactRequest $request)
     {
         $contact = $request->only(['gender', 'email', 'postcode', 'address', 'building_name', 'opinion']);
@@ -22,6 +23,7 @@ class TrainingTestController extends Controller
 
     public function store(ContactRequest $request)
     {
+
         $gender = $request->input('gender');
         if ($gender === '男性') {
             $genderValue = 1;

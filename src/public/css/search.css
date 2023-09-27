@@ -1,0 +1,180 @@
+.sys{
+    max-width: 90%;
+    height: 300px;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+.sys__form{
+    display: flex;
+    justify-content: start;
+    padding: 20px 30px 0 30px;
+    align-items: baseline;
+}
+
+.sys__from--input{
+    margin-right: 120px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.sys__from--input--mail{
+    margin-right: 60px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.sys__input{
+    height: 40px;
+    width: 300px;
+    padding: 0 5px;
+    font-size: 15px;
+}
+
+.sex{
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 30px 0 0;
+}
+
+.radio__btn{
+    font-size: 15px;
+    padding: 0 40px 0 23px;
+}
+
+.sys__cld{
+    font-size: 20px;
+    padding: 0 50px;
+}
+
+.form__button,
+.form__button--rst{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.sys__button-submit {
+    padding: 10px 0;
+    align-items: center;
+    width: 180px;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sys_menu{
+    border-bottom: 2px solid black;
+}
+
+.sys__button-rst{
+    background-color: white;
+    border: none;
+    color: black;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: #000000;
+}
+
+.sys__button-rst:hover{
+    color: gray;
+    text-decoration-color: gray;
+}
+
+.rlt{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.rlt__data{
+    display: flex;
+    justify-content: start;
+}
+
+.rlt_ttl{
+    padding: 0 86px 15px 0;
+    text-align: left;
+}
+
+.rlt_ttl--data{
+    padding-top: 20px;
+}
+
+.line{
+    text-align: center;
+    font-size: 14px;
+    border-bottom: 2px solid black;
+    padding: 8px 0;
+    margin: 0 auto;
+}
+
+.rlt_btn{
+    align-items: end;
+}
+.rlt__table__inner{
+    width: 90%;
+}
+.rlt_btn-inner{
+    width: 70px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.del{
+    margin-bottom: 60px;
+}
+
+#opinion{
+    padding-left: 45px;
+}
+
+.zenken{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.zenken__inner{
+    padding:20px 0 0 80px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.pagination{
+    text-align: right;
+    margin-right: 90px;
+}
+
+.pagination li{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #ffffff;
+    padding: 10px; /* ボタンのパディングを調整 */
+    background-color: #ffffff; /* ボタンの背景色 */
+    color: #000000; /* ボタンのテキスト色 */
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #000000; /* ボーダーを追加 */
+    transition: background-color 0.3s ease; /* ホバーエフェクトを追加 */
+}
+
+.pagination li.active {
+    background-color: #000000; /* 背景色を反転 */
+    color: #ffffff; /* テキスト色を反転 */
+    border-color: #000000; /* ボーダー色を反転 */
+}
