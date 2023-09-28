@@ -176,5 +176,58 @@
     }
 </script>
 
+
+
+
+
+
+<script>
+$(document).ready(function() {
+    $('.delete-button').on('click', function() {
+        var id = $(this).data('id');
+        var row = $(this).closest('tr');
+        $.ajax({
+            url: '/contacts/delete/' + id,
+            type: 'DELETE',
+            data: {
+                _token: '{{ csrf_token() }}',
+                _method: 'DELETE'
+            },
+            success: function(data) {
+                if (data.nextContact) {
+                    getNextDataAndAppend(row, data.nextContact);
+                } else {
+                    location.reload();
+                }
+            },
+            error: function(data) {
+                console.log('削除エラー:', data);
+            }
+        });
+    });
+
+    function getNextDataAndAppend(row, nextContact) {
+        var newRowHtml = '<tr class="sys_mem">' +
+            '<td class="rlt_ttl--data">' + nextContact.id + '</td>' +
+            '<td class="rlt_ttl--data">' + nextContact.fullname + '</td>' +
+            '<td class="rlt_ttl--data">' + (nextContact.gender === 1 ? '男性' : (nextContact.gender === 2 ? '女性' : '不明')) + '</td>' +
+            '<td class="rlt_ttl--data">' + nextContact.email + '</td>' +
+            '<td class="rlt_ttl--data" id="opinion" data-text="' + nextContact.opinion + '">' + nextContact.opinion + '</td>' +
+            '<td class="rlt_ttl--data">' +
+            '<button class="rlt_btn-inner delete-button" data-id="' + nextContact.id + '" type="button">削除</button>' +
+            '</td>' +
+            '</tr>';
+
+        row.fadeOut('slow', function() {
+            $(this).remove();
+            row.after(newRowHtml);
+        });
+    }
+});
+</script>
+
+
+
+
     @endsection
 @endsection
