@@ -263,7 +263,7 @@ input,textarea{
     .form__input--text input,
     .form__input--textarea textarea,
     .form__input--postcode input {
-        padding: 0 10px;
+        padding: 5px 10px;
         width: 300px;
         border: 1px solid #ddd;
         border-radius: 3px;
@@ -278,4 +278,13 @@ input,textarea{
         position: relative;
         left: 125px;
     }
+}
+
+.form__error {
+    background-color: red;
+    font-weight: bold;
+    color: white;
+    padding: 0;
+    margin: 0;
+    border-radius: 3px;
 }

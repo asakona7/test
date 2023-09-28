@@ -101,12 +101,14 @@
         <button class="rlt_btn-inner delete-button" data-id="{{ $result->id }}" type="button">削除</button>
     </td>
 </tr>
-@endforeach
+                @endforeach
             @endif
         </table>
     </div>
-    @section('js')
-        <script>
+@endsection
+
+@section('js')
+<script>
             const opinionCells = document.querySelectorAll('.rlt_ttl--data[data-text]');
 
             const maxCharacters = 25;
@@ -127,7 +129,7 @@
                         : opinionText;
                 });
             });
-        </script>
+</script>
 
 <script>
     $(document).ready(function() {
@@ -176,11 +178,6 @@
     }
 </script>
 
-
-
-
-
-
 <script>
 $(document).ready(function() {
     $('.delete-button').on('click', function() {
@@ -225,9 +222,4 @@ $(document).ready(function() {
     }
 });
 </script>
-
-
-
-
-    @endsection
 @endsection
