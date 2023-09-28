@@ -13,48 +13,44 @@
 @endsection
 @section('content')
     <div class="sys">
-        <form class="form" action="/search" method="GET">
+        <form class="form" action="/search" method="GET" id="search-form">
+            @csrf
             <div class="sys__form">
                 <p>
                 <div class="sys__from--input">お名前</div>
-                <input class="sys__input" type="text" name="fullname" value="{{ old('fullname') }}">
+                <input class="sys__input" type="text" name="fullname" value="{{ request('fullname') }}">
                 </p>
 
-                <p class="radio__btn">
-                <div class="sex">性別</div>
-
-                <input type="radio" name="gender" value="all" id="all" style="transform:scale(2.5);" checked/>
-                <label for="all"><span class="radio__btn">全て</span></label>
-                <input type="radio" name="gender" value="1" id="men" style="transform:scale(2.5);">
-                <label for="men"><span class="radio__btn">男性</span></label>
-                <input type="radio" name="gender" value="2" id="women" style="transform:scale(2.5);"/>
-                <label for="women">
-                    <span class="radio__btn">女性</span>
-                </label>
-                </p>
+<p class="radio__btn">
+    <div class="sex">性別</div>
+    <input type="radio" name="gender" value="all" id="all" style="transform:scale(2.5);" {{ !request()->has('gender') || request('gender') === 'all' ? 'checked' : '' }}>
+    <label for="all"><span class="radio__btn">全て</span></label>
+    <input type="radio" name="gender" value="1" id="men" style="transform:scale(2.5);" {{ request('gender') === '1' ? 'checked' : '' }}>
+    <label for="men"><span class="radio__btn">男性</span></label>
+    <input type="radio" name="gender" value="2" id="women" style="transform:scale(2.5);" {{ request('gender') === '2' ? 'checked' : '' }}>
+    <label for="women"><span class="radio__btn">女性</span></label>
+</p>
             </div>
 
             <div class="sys__form">
                 <p>
                 <div class="sys__from--input">登録日</div>
-                <input class="sys__input" type="date" name="created_at_start" value="{{ old('created_at_start') }}">
+                <input class="sys__input" type="date" name="created_at_start" value="{{ request('created_at_start') }}">
                 <span class="sys__cld">~</span>
-                <input class="sys__input" type="date" name="created_at_end" value="{{ old('created_at_end') }}">
+                <input class="sys__input" type="date" name="created_at_end" value="{{ request('created_at_end') }}">
                 </p>
             </div>
-
             <div class="sys__form">
                 <p>
                 <div class="sys__from--input--mail">メールアドレス</div>
-                <input class="sys__input" type="text" name="email" value="{{ old('email') }}">
+                <input class="sys__input" type="text" name="email" value="{{ request('email') }}">
                 </p>
             </div>
-
             <div class="form__button">
                 <button class="sys__button-submit" type="submit">検索</button>
             </div>
             <div class="form__button--rst">
-                <button class="sys__button-rst" type="reset">リセット</button>
+                <button class="sys__button-rst" type="button" id="clear-button">リセット</button>
             </div>
         </form>
     </div>
@@ -76,18 +72,10 @@
         <table class="rlt__table__inner">
             <tr class="sys_menu">
                 <th class="rlt_ttl">ID</th>
-                <th class="rlt_ttl">
-                    お名前
-                </th>
-                <th class="rlt_ttl">
-                    性別
-                </th>
-                <th class="rlt_ttl">
-                    メールアドレス
-                </th>
-                <th class="rlt_ttl" id="opinion">
-                    ご意見
-                </th>
+                <th class="rlt_ttl">お名前</th>
+                <th class="rlt_ttl">性別</th>
+                <th class="rlt_ttl">メールアドレス</th>
+                <th class="rlt_ttl" id="opinion">ご意見</th>
             </tr>
             @if ($searchResults->isEmpty())
     <p></p>
@@ -119,31 +107,21 @@
     </div>
     @section('js')
         <script>
-            // opinionセルの要素を取得
             const opinionCells = document.querySelectorAll('.rlt_ttl--data[data-text]');
 
-            // 表示する最大文字数
             const maxCharacters = 25;
 
-            // opinionセルに対してループ処理を行う
             opinionCells.forEach((opinionCell) => {
-                // opinionセル内のテキストを取得
                 const opinionText = opinionCell.getAttribute('data-text').trim();
 
-                // opinionセル内のテキストを省略表示に設定
                 opinionCell.textContent = opinionText.length > maxCharacters
                     ? opinionText.slice(0, maxCharacters) + '…'
                     : opinionText;
 
-                // マウスオーバー時のイベントリスナーを追加
                 opinionCell.addEventListener('mouseover', function() {
-                    // マウスオーバー時に全文を表示
                     this.textContent = opinionText;
                 });
-
-                // マウスアウト時のイベントリスナーを追加
                 opinionCell.addEventListener('mouseout', function() {
-                    // マウスアウト時に再び省略表示に戻す
                     this.textContent = opinionText.length > maxCharacters
                         ? opinionText.slice(0, maxCharacters) + '…'
                         : opinionText;
@@ -155,9 +133,7 @@
     $(document).ready(function() {
         $('.delete-button').on('click', function() {
             var id = $(this).data('id');
-            var row = $(this).closest('tr'); // 削除対象の行を取得
-
-            // Ajaxリクエストを送信
+            var row = $(this).closest('tr');
             $.ajax({
                 url: '/contacts/delete/' + id,
                 type: 'DELETE',
@@ -166,13 +142,11 @@
                     _method: 'DELETE'
                 },
                 success: function(data) {
-                    // 削除成功時の処理
                     row.fadeOut('slow', function() {
-                        $(this).remove(); // 行を非表示にし、削除
+                        $(this).remove();
                     });
                 },
                 error: function(data) {
-                    // エラー時の処理
                     console.log('削除エラー:', data);
                 }
             });
@@ -180,6 +154,27 @@
     });
 </script>
 
+<script>
+    document.getElementById('clear-button').addEventListener('click', function () {
+        document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+            radio.checked = false;
+        });
+        document.querySelectorAll('input[type="text"]').forEach(function (textInput) {
+            textInput.value = '';
+        });
+        document.querySelectorAll('input[type="date"]').forEach(function (dateInput) {
+            dateInput.value = '';
+        });
+        document.querySelectorAll('input[type="email"]').forEach(function (emailInput) {
+            emailInput.value = '';
+        });
+        resetRadioButtons();
+    });
+
+    function resetRadioButtons() {
+        document.getElementById('all').checked = true;
+    }
+</script>
 
     @endsection
 @endsection
