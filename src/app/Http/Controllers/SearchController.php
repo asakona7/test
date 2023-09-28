@@ -8,15 +8,17 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
-    {
-        // フォームから送信された検索条件を取得
-        $fullname = $request->input('fullname');
-        $gender = $request->input('gender');
-        $created_at_start = $request->input('created_at_start');
-        $created_at_end = $request->input('created_at_end');
-        $email = $request->input('email');
+public function search(Request $request)
+{
+    // リクエストから検索パラメータを取得
+    $fullname = $request->input('fullname');
+    $gender = $request->input('gender');
+    $created_at_start = $request->input('created_at_start');
+    $created_at_end = $request->input('created_at_end');
+    $email = $request->input('email');
 
+    // 検索パラメータが提供されているかを確認
+    if ($fullname || $gender !== 'all' || $created_at_start || $created_at_end || $email) {
         // Contact モデルでの検索クエリを構築
         $query = Contact::query()
             ->when($fullname, function ($query, $fullname) {
@@ -41,7 +43,7 @@ class SearchController extends Controller
         }
 
         // ページネーションを適用
-        $searchResults = $query->paginate(5);
+        $searchResults = $query->paginate(10);
 
         // 検索フォームの入力内容をセッションに保存
         $request->session()->put('fullname', $fullname);
@@ -49,14 +51,22 @@ class SearchController extends Controller
         $request->session()->put('created_at_start', $created_at_start);
         $request->session()->put('created_at_end', $created_at_end);
         $request->session()->put('email', $email);
-
+    } else {
+        // 検索パラメータが提供されない場合、セッションから検索結果を取得
         $searchResults = $request->session()->get('searchResults');
-
-        return view('search')->with([
-            'searchResults' => $searchResults, // セッションから取得した検索結果（ページネーションを含む）
-            'request' => $request, // リクエストデータ（検索フォームの入力値など）
-        ]);
     }
+
+    return view('search')->with([
+        'searchResults' => $searchResults,
+        'request' => $request,
+    ]);
+}
+
+
+
+
+
+
 
 
     public function index(Request $request)
@@ -98,26 +108,21 @@ class SearchController extends Controller
     }
 
 
-    public function destroy(Request $request, $id)
-    {
-        // Contact モデルからコンタクトを削除
-        $contact = Contact::find($id);
-        if ($contact) {
-            $contact->delete();
-        }
+public function destroy(Request $request, $id)
+{
+    // Contact モデルからコンタクトを削除
+    $contact = Contact::find($id);
+    if ($contact) {
+        $contact->delete();
 
-        // 削除後にも検索結果を取得し直してセッションに保存
-        $searchResults = Contact::query()->paginate(10); // ページネーションの件数を合わせる
-        $request->session()->put('searchResults', $searchResults);
-
-        return redirect()->route('contacts.search')->with([
-            'fullname' => old('fullname', session('fullname')),
-            'gender' => old('gender', session('gender')),
-            'created_at_start' => old('created_at_start', session('created_at_start')),
-            'created_at_end' => old('created_at_end', session('created_at_end')),
-            'email' => old('email', session('email')),
-        ]);
+        // 削除成功時にHTTPステータスコード200を返す
+        return response()->json(['message' => '削除が成功しました'], 200);
     }
+
+    // 削除できない場合はHTTPステータスコード404を返す
+    return response()->json(['message' => '削除できませんでした'], 404);
+}
+
 
     public function boot()
     {
@@ -125,4 +130,3 @@ class SearchController extends Controller
     }
 
 }
-

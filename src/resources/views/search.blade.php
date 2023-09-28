@@ -59,10 +59,16 @@
         </form>
     </div>
 
-    <div class="zenken">
-        <div class="zenken__inner">全{{ $searchResults->total() }}件中　{{ $searchResults->firstItem() }}～{{ $searchResults->lastItem() }}件</div>
-        {{ $searchResults->appends(request()->query())->links('pagination::bootstrap-4', ['class' => 'current']) }}
+<div class="zenken">
+    <div class="zenken__inner">
+        @if ($searchResults)
+            全{{ $searchResults->total() }}件中　{{ $searchResults->firstItem() }}～{{ $searchResults->lastItem() }}件
+        @endif
     </div>
+    @if ($searchResults)
+        {{ $searchResults->appends(request()->query())->links('pagination::bootstrap-4', ['class' => 'current']) }}
+    @endif
+</div>
 
 
 
@@ -83,35 +89,32 @@
                     ご意見
                 </th>
             </tr>
-            @foreach ($searchResults as $result)
-                <tr class="sys_mem" l>
-                    <td class="rlt_ttl--data">{{ $result->id }}</td>
-                    <td class="rlt_ttl--data">{{ $result->fullname }}</td>
-                    <td class="rlt_ttl--data">@if ($result->gender === 1)
-                            男性
-                        @elseif ($result->gender === 2)
-                            女性
-                        @else
-                            不明
-                        @endif</td>
-                    <td class="rlt_ttl--data">{{ $result->email }}</td>
-                    <td class="rlt_ttl--data" id="opinion" data-text="{{ $result->opinion }}">
-                        {{ $result->opinion }}
-                    </td>
-                    <td class="rlt_ttl--data">
-                        <form class="delete-form" action="/contacts/delete/{{ $result->id }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <input type="hidden" name="fullname" value="{{ old('fullname', session('fullname')) }}">
-                            <input type="hidden" name="gender" value="{{ old('gender', session('gender')) }}">
-                            <input type="hidden" name="created_at_start" value="{{ old('created_at_start', session('created_at_start')) }}">
-                            <input type="hidden" name="created_at_end" value="{{ old('created_at_end', session('created_at_end')) }}">
-                            <input type="hidden" name="email" value="{{ old('email', session('email')) }}">
-                            <button class="rlt_btn-inner" type="submit">削除</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
+            @if ($searchResults->isEmpty())
+    <p></p>
+@else
+@foreach ($searchResults as $result)
+<tr class="sys_mem">
+    <td class="rlt_ttl--data">{{ $result->id }}</td>
+    <td class="rlt_ttl--data">{{ $result->fullname }}</td>
+    <td class="rlt_ttl--data">
+        @if ($result->gender === 1)
+            男性
+        @elseif ($result->gender === 2)
+            女性
+        @else
+            不明
+        @endif
+    </td>
+    <td class="rlt_ttl--data">{{ $result->email }}</td>
+    <td class="rlt_ttl--data" id="opinion" data-text="{{ $result->opinion }}">
+        {{ $result->opinion }}
+    </td>
+    <td class="rlt_ttl--data">
+        <button class="rlt_btn-inner delete-button" data-id="{{ $result->id }}" type="button">削除</button>
+    </td>
+</tr>
+@endforeach
+            @endif
         </table>
     </div>
     @section('js')
@@ -147,5 +150,36 @@
                 });
             });
         </script>
+
+<script>
+    $(document).ready(function() {
+        $('.delete-button').on('click', function() {
+            var id = $(this).data('id');
+            var row = $(this).closest('tr'); // 削除対象の行を取得
+
+            // Ajaxリクエストを送信
+            $.ajax({
+                url: '/contacts/delete/' + id,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    _method: 'DELETE'
+                },
+                success: function(data) {
+                    // 削除成功時の処理
+                    row.fadeOut('slow', function() {
+                        $(this).remove(); // 行を非表示にし、削除
+                    });
+                },
+                error: function(data) {
+                    // エラー時の処理
+                    console.log('削除エラー:', data);
+                }
+            });
+        });
+    });
+</script>
+
+
     @endsection
 @endsection

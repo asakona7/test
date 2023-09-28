@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/common.css') }}"/>
     <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @yield('css')
 </head>
 <header class="header">

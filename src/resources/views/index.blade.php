@@ -86,7 +86,7 @@
                     <div class="form__input--postcode">
                         <span class="form__postcode">〒</span>
                         <input type="text" id="postcode" name="postcode" size="10" maxlength="8"
-                               onKeyUp="AjaxZip3.zip2addr(this,'','address','address');" value="{{ old('postcode') }}"/>
+                            onKeyUp="AjaxZip3.zip2addr(this,'','address','address');" value="{{ old('postcode') }}"/>
                         <div class="form__error"></div>
                     </div>
                 </div>
@@ -327,12 +327,10 @@
                     }
                     return true;
                 }
-
                 errorContainer.innerHTML = '';
                 errorContainer.appendChild(errorMessage);
                 return false;
             }
-
         });
     </script>
 
