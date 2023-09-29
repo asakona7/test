@@ -2,12 +2,13 @@
 一般的な問い合わせフォームです。
 必須事項を書いてもらい、ご意見を送っていただけるアプリです。
 
+![TOP](img/TOP.jpg)
 
 ##目的
 確認テストのためです。
 
 ##URL
-問い合わせフォームがホームページなっており、
+問い合わせフォームがホームページになっており、
 管理画面が/contacts/searchになっています。
 
 ##機能
@@ -21,9 +22,10 @@ Laravelフレームワーク、Dockerを利用し、
 HTML(Blade)、PHP:7.4.9、CSS、mySQLなどを使いました。
 
 ##テーブル設計
-
+![テーブル設計](img/contacts_table.png)
 
 ##ER図
+![ER図](img/test.drawio.png)
 
 ##開発
 環境Windows11上でlinuxを作りました。
