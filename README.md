@@ -2,7 +2,7 @@
 一般的な問い合わせフォームです。
 必須事項を書いてもらい、ご意見を送っていただけるアプリです。
 
-![TOP](img/TOP.jpg)
+![TOP](https://github.com/naoki28aida/trainingtest/assets/138663818/77a1bcb6-aec3-4ab4-a93b-8bdc94fcca1c)
 
 ##目的
 確認テストのためです。
