@@ -110,16 +110,12 @@
 @section('js')
 <script>
             const opinionCells = document.querySelectorAll('.rlt_ttl--data[data-text]');
-
             const maxCharacters = 25;
-
             opinionCells.forEach((opinionCell) => {
                 const opinionText = opinionCell.getAttribute('data-text').trim();
-
                 opinionCell.textContent = opinionText.length > maxCharacters
                     ? opinionText.slice(0, maxCharacters) + '...'
                     : opinionText;
-
                 opinionCell.addEventListener('mouseover', function() {
                     this.textContent = opinionText;
                 });
@@ -172,7 +168,6 @@
         });
         resetRadioButtons();
     });
-
     function resetRadioButtons() {
         document.getElementById('all').checked = true;
     }
@@ -214,7 +209,6 @@ $(document).ready(function() {
             '<button class="rlt_btn-inner delete-button" data-id="' + nextContact.id + '" type="button">削除</button>' +
             '</td>' +
             '</tr>';
-
         row.fadeOut('slow', function() {
             $(this).remove();
             row.after(newRowHtml);
