@@ -57,7 +57,7 @@
 
 <div class="zenken">
     <div class="zenken__inner">
-        @if ($searchResults)
+        @if ($searchResults && $searchResults->total() > 0)
             全{{ $searchResults->total() }}件中　{{ $searchResults->firstItem() }}～{{ $searchResults->lastItem() }}件
         @endif
     </div>
@@ -71,10 +71,10 @@
     <div class="rlt">
         <table class="rlt__table__inner">
             <tr class="sys_menu">
-                <th class="rlt_ttl">ID</th>
+                <th class="rlt_ttl" id="id__menu">ID</th>
                 <th class="rlt_ttl">お名前</th>
-                <th class="rlt_ttl">性別</th>
-                <th class="rlt_ttl">メールアドレス</th>
+                <th class="rlt_ttl" id="gender__menu">性別</th>
+                <th class="rlt_ttl" id="email__menu">メールアドレス</th>
                 <th class="rlt_ttl" id="opinion">ご意見</th>
             </tr>
             @if ($searchResults->isEmpty())
@@ -82,9 +82,9 @@
 @else
 @foreach ($searchResults as $result)
 <tr class="sys_mem">
-    <td class="rlt_ttl--data">{{ $result->id }}</td>
+    <td class="rlt_ttl--data" id="id__menu">{{ $result->id }}</td>
     <td class="rlt_ttl--data">{{ $result->fullname }}</td>
-    <td class="rlt_ttl--data">
+    <td class="rlt_ttl--data" id="gender__menu">
         @if ($result->gender === 1)
             男性
         @elseif ($result->gender === 2)
@@ -93,11 +93,11 @@
             不明
         @endif
     </td>
-    <td class="rlt_ttl--data">{{ $result->email }}</td>
+    <td class="rlt_ttl--data" id="email__menu">{{ $result->email }}</td>
     <td class="rlt_ttl--data" id="opinion" data-text="{{ $result->opinion }}">
         {{ $result->opinion }}
     </td>
-    <td class="rlt_ttl--data">
+    <td class="rlt_ttl--data" id="dlt__menu">
         <button class="rlt_btn-inner delete-button" data-id="{{ $result->id }}" type="button">削除</button>
     </td>
 </tr>
@@ -117,7 +117,7 @@
                 const opinionText = opinionCell.getAttribute('data-text').trim();
 
                 opinionCell.textContent = opinionText.length > maxCharacters
-                    ? opinionText.slice(0, maxCharacters) + '…'
+                    ? opinionText.slice(0, maxCharacters) + '...'
                     : opinionText;
 
                 opinionCell.addEventListener('mouseover', function() {
@@ -125,7 +125,7 @@
                 });
                 opinionCell.addEventListener('mouseout', function() {
                     this.textContent = opinionText.length > maxCharacters
-                        ? opinionText.slice(0, maxCharacters) + '…'
+                        ? opinionText.slice(0, maxCharacters) + '...'
                         : opinionText;
                 });
             });

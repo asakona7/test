@@ -88,7 +88,7 @@
 }
 
 .rlt{
-    padding-top: 20px;
+    padding: 20px 0;
     display: flex;
     justify-content: center;
     font-weight: 400;
@@ -101,12 +101,12 @@
 }
 
 .rlt_ttl{
-    padding: 0 86px 15px 0;
+    width: 50px;
     text-align: left;
 }
 
 .rlt_ttl--data{
-    padding-top: 20px;
+    width: 78px;
 }
 
 .line{
@@ -138,14 +138,11 @@
     margin-bottom: 60px;
 }
 
-#opinion{
-    padding-left: 45px;
-}
-
 .zenken{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
+    padding-top: 20px;
 }
 
 .zenken__inner{
@@ -154,27 +151,56 @@
     font-weight: 400;
 }
 
-.pagination{
-    text-align: right;
+.pagination {
+    text-align: center;
     margin-right: 90px;
 }
 
-.pagination li{
+.pagination li {
     display: inline-block;
-    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    font-weight: 400;
     font-size: 14px;
     background-color: #ffffff;
-    padding: 10px; /* ボタンのパディングを調整 */
-    background-color: #ffffff; /* ボタンの背景色 */
-    color: #000000; /* ボタンのテキスト色 */
+    padding: 10px;
+    margin-right: -6px;
+    color: #000000;
     text-align: center;
     text-decoration: none;
-    border: 1px solid #000000; /* ボーダーを追加 */
-    transition: background-color 0.3s ease; /* ホバーエフェクトを追加 */
+    border: 1px solid grey;
+    transition: background-color 0.3s ease;
+    line-height: 9px;
 }
 
+
+
 .pagination li.active {
-    background-color: #000000; /* 背景色を反転 */
-    color: #ffffff; /* テキスト色を反転 */
-    border-color: #000000; /* ボーダー色を反転 */
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+}
+
+#opinion{
+    padding: 20px 40px;
+    width: 200px
+}
+
+#id__menu{
+    max-width: 10px;
+    text-align: center;
+    padding-right: 40px;
+}
+
+#gender__menu{
+    max-width: 45px;
+}
+
+#email__menu{
+    width: 100px;
+}
+
+#dlt__menu{
+    text-align: right;
+    padding-right: 20px;
 }
