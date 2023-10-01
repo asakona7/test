@@ -8,6 +8,7 @@
 確認テストのためです。
 
 ##URL
+https://github.com/naoki28aida/trainingtest.git
 問い合わせフォームがホームページになっており、
 管理画面が/contacts/searchになっています。
 
@@ -22,10 +23,12 @@ Laravelフレームワーク、Dockerを利用し、
 HTML(Blade)、PHP:7.4.9、CSS、mySQL、jsなどを使いました。
 
 ##テーブル設計
+
 <img width="525" alt="contacts_table" src="https://github.com/naoki28aida/trainingtest/assets/138663818/5694c38b-32e0-43c2-af3f-21a7ee80cdea">
 
 
 ##ER図
+
 ![test drawio](https://github.com/naoki28aida/trainingtest/assets/138663818/8fe6c062-574d-46d4-bf96-767406480fc7)
 
 ##開発
