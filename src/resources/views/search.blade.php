@@ -14,7 +14,6 @@
 @section('content')
     <div class="sys">
         <form class="form" action="/search" method="GET" id="search-form">
-            @csrf
             <div class="sys__form">
                 <p>
                 <div class="sys__from--input">お名前</div>
